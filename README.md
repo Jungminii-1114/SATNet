@@ -64,4 +64,16 @@ The official SATNet result is reported in the SATNet Github Repository.
 Source: https://github.com/tyhuang0428/SATNet
 
 ## Head-wse Evaluation
+| Head | IoU | F-measure | MAE | Best Threshold |
+| :--- | :--- | :--- | :--- | :--- |
+| p0 | 63.54 | 0.8346 | 0.0852 | 0.6235 |
+| p1 | 63.37 | 0.8331 | 0.0855 | 0.6118 |
+| p2 | 62.75 | 0.8342 | 0.0879 | 0.6588 |
+| p3 | 63.01 | 0.8378 | 0.0874 | 0.6392 |
+
+Among the four prediction heads, `p0` is used as the final prediction head because it achieves the best IoU and MAE. 
+
+## Discussion
+
+The Implemented SATNet significanlty
 
