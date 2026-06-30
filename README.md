@@ -15,7 +15,7 @@ Official SATNet repository: https://github.com/tyhuang0428/SATNet
 The backbone extracts multil-scale visual features from both the original image and its horizontally flipped counterpart. In this implementation, Swin-S is used as the feature extractor.
 The backbone outputs four feature levels, which are later used by SAAM and CFDM.
 
-### SAM: Symmetry-Aware Attention Module
+### SAAM: Symmetry-Aware Attention Module
 
 SAAM is designed to exploit the symmetry relationship between the original image and its flipped image. 
 It receives feature maps from both branches after alignment and applies attention-based feature ineraction. This helps the network capture mirror-related symmetry cues that may not be obvious from the original iamge alone.
