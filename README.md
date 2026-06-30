@@ -61,7 +61,7 @@ Higher IoU and F-measure indicate better performance, while lower MAE indicates 
 | Implemented SATNet | MSD | **63.54** | **0.8346** | **0.0852** |
 
 The official SATNet result is reported in the SATNet Github Repository.
-Source: https://github.com/tyhuang0428/SATNet
+<br>Source: https://github.com/tyhuang0428/SATNet
 
 ## Head-wse Evaluation
 | Head | IoU | F-measure | MAE | Best Threshold |
