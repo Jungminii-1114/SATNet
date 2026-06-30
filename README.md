@@ -25,3 +25,43 @@ The edited model is implemented in:
 
 ```text
 sample_network_edited.py
+```
+
+The main training model is
+```python
+TrainableSATNetWithSwinEdited
+```
+## Experimental Setup
+| Item | Setting |
+| :--- | :--- |
+| Dataset | MSD |
+| Train / Validation / Test | 2757 / 306 / 955 |
+| Input size | 512x512 |
+| Backbone | Swin-S |
+| Batch size | 4 |
+| Gradient accumulation | 4 |
+| Effective batch size | 4 |
+| Optimizer updates | 20,000 |
+| Evaluation metrics | IoU, F-measure, MAE |
+
+## Evaluation Metrics
+The model is evaluated using the same major metrics reported in STANet:
+| Metric | Description |
+| :--- | :--- |
+| IoU | Intersectino over Union between predicted mask and ground-truth mask |
+| F-measure | Precision-recall based segmentation quality metric |
+| MAE | Mean Absolute Error between prediction probability map and ground-truth mask |
+
+Higher IoU and F-measure indicate better performance, while lower MAE indicates better performance.
+
+## Results on MSD Test set
+| Method | Dataset | IoU | F-measure | MAE |
+|:--- | :--- | :--- | :--- | :--- |
+| Official SATNet | MSD | 85.41 | 0.9222 | 0.033 |
+| Implemented SATNet | MSD | **63.54** | **0.8346** | **0.0852** |
+
+The official SATNet result is reported in the SATNet Github Repository.
+Source: https://github.com/tyhuang0428/SATNet
+
+## Head-wse Evaluation
+
