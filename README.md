@@ -41,16 +41,6 @@ The decoder produces four prediction heads: `p0`, `p1`, `p2`, and `p3`.
 
 In this implementation, `p3` is the coarsest prediction from the deepest decoder stage, while `p0` is the final high-resolution prediction after all top-down CFDM stages. Therefore, `p0` is used as the final output for test evaluation.
 
-## Discussion
-
-The edited SATNet achieved meaningful mirror segmentation performance on the MSD test set, with `IoU 63.54`, `F-measure 0.8346`, and `MAE 0.0852`. The four prediction heads produced similar performance, and the final high-resolution head `p0` achieved the best IoU and MAE among them.
-
-This result suggests that the decoder produces consistent multi-scale predictions and that the final top-down prediction head is functioning as intended. The head-wise evaluation also shows that the model does not rely on a single intermediate head, but instead maintains relatively stable performance across decoder stages.
-
-However, the current result is still below the official SATNet performance reported on MSD. The remaining gap may be caused by differences in the exact decoder implementation, contrast learning design, data augmentation pipeline, learning schedule, backbone implementation, and pretrained weight loading strategy.
-
-Future work should focus on further aligning this implementation with the official SATNet training and architectural details, especially the CFDM and CCL designs, backbone initialization, and data processing pipeline.
-
 ---- 
 
 The edited model is implemented in:
@@ -107,5 +97,10 @@ Among the four prediction heads, `p0` is used as the final prediction head becau
 
 ## Discussion
 
-The Implemented SATNet significanlty
+The edited SATNet achieved meaningful mirror segmentation performance on the MSD test set, with `IoU 63.54`, `F-measure 0.8346`, and `MAE 0.0852`. The four prediction heads produced similar performance, and the final high-resolution head `p0` achieved the best IoU and MAE among them.
 
+This result suggests that the decoder produces consistent multi-scale predictions and that the final top-down prediction head is functioning as intended. The head-wise evaluation also shows that the model does not rely on a single intermediate head, but instead maintains relatively stable performance across decoder stages.
+
+However, the current result is still below the official SATNet performance reported on MSD. The remaining gap may be caused by differences in the exact decoder implementation, contrast learning design, data augmentation pipeline, learning schedule, backbone implementation, and pretrained weight loading strategy.
+
+Future work should focus on further aligning this implementation with the official SATNet training and architectural details, especially the CFDM and CCL designs, backbone initialization, and data processing pipeline.
