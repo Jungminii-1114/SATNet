@@ -1,19 +1,78 @@
+# =========================
+# Experiment
+# =========================
 project_name: satnet-mirror-detection
-run_name: swin-s-msd-512
+run_name: "swin-s-msd-512-final"
+use_wandb: true
 
-data_root: "/Users/ijeongmin/🔥이정민🔥/가천대학교/CVIP/Mirror Detect/Dataset/MSD"
-img_size: 512
-batch_size: 2
-num_workers: 0
+# =========================
+# Paths
+# =========================
+data_root: "/content/datasets/MSD"
+save_dir: "/content/drive/MyDrive/Colab Notebooks/CVIP_LAB/Mirror/SATNet/checkpoints"
 
+
+# =========================
+# Model
+# =========================
 backbone: swin_small_patch4_window7_224
 pretrained: true
+img_size: 512
 
+# =========================
+# DataLoader
+# =========================
+batch_size: 4
+accumulation_steps: 4
+num_workers: 2
+pin_memory: true
+
+# =========================
+# Augmentation
+# Paper: random resize, random crop, random horizontal flip
+# =========================
+augment: true
+base_scale: 520
+crop_size: 512
+ratio_range: [0.5, 2.0]
+flip_prob: 0.5
+photometric_distortion: false
+cat_max_ratio: 0.75
+ignore_index: 255
+
+# =========================
+# Training
+# Paper: 20K iterations, AdamW, poly lr
+# =========================
+max_iters: 20000
 num_epochs: 10
 lr: 0.0006
 betas: [0.9, 0.999]
 weight_decay: 0.01
 loss_weights: [1.25, 1.25, 1.0, 1.5]
 
+# =========================
+# Evaluation
+# Paper metrics: IoU, F-beta, MAE
+# =========================
+val_ratio: 0.1
+best_metric: "iou"
+f_beta_square: 0.3
+metric_num_thresholds: 256
+
+# =========================
+# Logging / Checkpoint
+# =========================
 log_interval: 20
-save_dir: "./checkpoints"
+save_interval: 1
+
+# =========================
+# Resume
+# Set true only when continuing an interrupted run
+# =========================
+resume: true
+resume_path: "/content/drive/MyDrive/Colab Notebooks/CVIP_LAB/Mirror/SATNet/checkpoints/last_model.pth"
+save_dir: "/content/drive/MyDrive/Colab Notebooks/CVIP_LAB/Mirror/SATNet/checkpoints"
+run_name: "swin-s-msd-512-final"
+
+fusion_mode: "gated_add"
